@@ -9,7 +9,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        libpq-dev \
        gcc \
-       git \
        gdal-bin \
        libgdal-dev \
        python3-gdal \
@@ -20,8 +19,8 @@ ENV GDAL_CONFIG=/usr/bin/gdal-config
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
 
-# Clone the repository
-RUN git clone https://github.com/opengeos/streamlit-geospatial.git .
+# Copy the local files to the container
+COPY . .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip \
